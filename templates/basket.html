@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+      <a class="navbar-brand" href="#">Logo</a>
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Weekly special</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="">Basket</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h3 class="seperator">
+        <div class="wrap">
+          <br>
+          Basket
+        <br>
+        <br>
+        
+        </div>
+    </h3>
+
+    {% if len(basket) != 0 %}
+
+    <div class="container">
+      <h2>Hover Rows</h2>
+      <p>The .table-hover class enables a hover state on table rows:</p>            
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in basket %}
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>£{{ product.price }}</td>
+              <td>{{ product.quantity }}</td>
+              <td>£{{ product.price * product.quantity }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p>Your basket is empty.</p>
+  {% endif %}
+    
+
+
+
+      <br>
+      <br>
+      <button>
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24" id="cart">
+          <path fill="#000000" d="M17,18A2,2 0 0,1 19,20A2,2 0 0,1 17,22C15.89,22 15,21.1 15,20C15,18.89 15.89,18 17,18M1,2H4.27L5.21,4H20A1,1 0 0,1 21,5C21,5.17 20.95,5.34 20.88,5.5L17.3,11.97C16.96,12.58 16.3,13 15.55,13H8.1L7.2,14.63L7.17,14.75A0.25,0.25 0 0,0 7.42,15H19V17H7C5.89,17 5,16.1 5,15C5,14.65 5.09,14.32 5.24,14.04L6.6,11.59L3,4H1V2M7,18A2,2 0 0,1 9,20A2,2 0 0,1 7,22C5.89,22 5,21.1 5,20C5,18.89 5.89,18 7,18M16,11L18.78,6H6.14L8.5,11H16Z" />
+      </svg>
+        <span>Checkout</span>
+        <svg id="check" style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path stroke-width="2" fill="none" stroke="#ffffff" d="M 3,12 l 6,6 l 12, -12"/>
+        </svg>
+      </button>
+
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>
